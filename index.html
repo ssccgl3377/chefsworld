@@ -2095,10 +2095,20 @@
         }
 
         function executeMailto() {
-            if (generatedMailtoLink) {
-                window.location.href = generatedMailtoLink;
-                // Keep modal open so they can go back if email client fails, but normally it just opens the client.
-            }
+            if (!generatedMailtoLink) return;
+
+            // Open Gmail directly instead of relying on a mailto: handler being
+            // configured in the visitor's browser or operating system.
+            const [recipient, query = ''] = generatedMailtoLink.slice('mailto:'.length).split('?');
+            const mailParams = new URLSearchParams(query);
+            const gmailUrl = new URL('https://mail.google.com/mail/');
+            gmailUrl.searchParams.set('view', 'cm');
+            gmailUrl.searchParams.set('fs', '1');
+            gmailUrl.searchParams.set('to', recipient);
+            gmailUrl.searchParams.set('su', mailParams.get('subject') || 'New Campaign Enquiry');
+            gmailUrl.searchParams.set('body', mailParams.get('body') || '');
+
+            window.open(gmailUrl.toString(), '_blank');
         }
 
         // ==========================================================================
