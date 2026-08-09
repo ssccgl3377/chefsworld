@@ -1279,7 +1279,7 @@
             </div>
 
             <!-- Dynamically populated via JS -->
-            <div class="packages-grid scroll-reveal" id="packagesContainer">
+            <div class="packages-grid" id="packagesContainer">
                 <!-- Packages injected here -->
             </div>
             
@@ -1755,7 +1755,7 @@
             
             PACKAGES_DATA.forEach(pkg => {
                 const isPopular = pkg.popular ? '<div class="popular-badge">MOST POPULAR</div>' : '';
-                const cardClass = pkg.popular ? 'package-card popular' : 'package-card';
+                const cardClass = pkg.popular ? 'package-card popular scroll-reveal' : 'package-card scroll-reveal';
                 
                 const html = `
                     <div class="${cardClass}">
