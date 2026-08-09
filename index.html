@@ -1557,7 +1557,7 @@
                 
                 <!-- STEP 1: FORM -->
                 <div id="step-1-content">
-                    <p class="text-secondary mb-2" style="margin-bottom: 2rem;">Please provide your details below. Your information will be securely drafted into an email for your review.</p>
+                    <p class="text-secondary mb-2" style="margin-bottom: 2rem;">Please provide your details below. Your enquiry will be securely recorded for our team and drafted into an email for your review.</p>
                     
                     <form id="enquiryForm" onsubmit="handleFormSubmit(event)">
                         <div class="form-group">
@@ -1667,7 +1667,8 @@
             email: "chefsworldglobal@gmail.com",
             instagram: "@the.chefs.world",
             instagramUrl: "https://instagram.com/the.chefs.world",
-            paymentMethods: ["PayPal", "Venmo", "Zelle", "Cash App"]
+            paymentMethods: ["PayPal", "Venmo", "Zelle", "Cash App"],
+            formBackendUrl: "https://script.google.com/macros/s/AKfycby1eX0GogiqRt7PZMXMVYrEXqRGfYr2MDsq4bVc9g4K_gzlwbuJVjNSrdAO0-nFcREtbg/exec"
         };
 
         // ==========================================================================
@@ -2007,6 +2008,22 @@
             document.getElementById('step-2-content').style.display = 'none';
         }
 
+        function saveSubmissionToBackend(submission) {
+            // Apps Script accepts this no-cors request and stores the enquiry in
+            // the private Google Sheet owned by The Chef's World.
+            fetch(BUSINESS_CONFIG.formBackendUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                keepalive: true,
+                headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+                body: JSON.stringify(submission)
+            }).catch(error => {
+                // Keep the email-based enquiry flow available if a visitor has
+                // a temporary network issue; the error is logged for debugging.
+                console.error('Unable to record form submission:', error);
+            });
+        }
+
         function handleFormSubmit(e) {
             e.preventDefault();
             
@@ -2053,6 +2070,20 @@
             bodyData += `Campaign Remarks / Creative Direction:\r\n${remarks}\r\n\r\n`;
             bodyData += `Preferred Payment Method: ${selectedPayment}\r\n`;
 
+            saveSubmissionToBackend({
+                packageName: pkgData.custom ? 'CUSTOM CAMPAIGN' : pkgData.name,
+                packagePrice: pkgData.custom ? 'Custom' : `$${pkgData.price}`,
+                campaignTarget: pkgData.custom ? 'Custom' : pkgData.target,
+                campaignDuration: pkgData.custom ? 'Custom' : pkgData.duration,
+                name,
+                email,
+                instagram: ig,
+                socialLinks: social,
+                description: desc,
+                remarks,
+                paymentMethod: selectedPayment
+            });
+
             generatedMailtoLink = `mailto:${BUSINESS_CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyData)}`;
 
             // Transition to Step 2
@@ -2095,10 +2126,10 @@
             if (type === 'privacy') {
                 title.innerText = "Privacy Policy";
                 body.innerHTML = `
-                    <p style="margin-bottom:1rem;"><strong>Information Collection:</strong> We collect only the information provided voluntarily via our enquiry email system (name, email, social media handles, and business descriptions) for the sole purpose of organizing your promotional campaign.</p>
+                    <p style="margin-bottom:1rem;"><strong>Information Collection:</strong> We collect the information provided voluntarily through our enquiry form (name, email, social media handles, campaign details, and business descriptions) for the sole purpose of organizing your promotional campaign.</p>
                     <p style="margin-bottom:1rem;"><strong>Data Usage:</strong> Your information is used strictly to communicate regarding services, confirm payment preferences, and execute social media promotion.</p>
                     <p style="margin-bottom:1rem;"><strong>Third Parties:</strong> We do not sell, trade, or distribute your personal data or payment preferences to unauthorized third parties.</p>
-                    <p><strong>Security:</strong> All communication happens directly via secure email clients. We do not ask for or store passwords to your social media accounts, nor do we process payments directly on this website.</p>
+                    <p><strong>Security:</strong> Enquiries are sent to our private business records and email inbox. We do not ask for or store passwords to your social media accounts, nor do we process payments directly on this website.</p>
                 `;
             } else if (type === 'terms') {
                 title.innerText = "Terms & Conditions";
