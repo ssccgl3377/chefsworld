@@ -2121,7 +2121,14 @@
         }
 
         function openContactEmail() {
-            window.location.href = `mailto:${BUSINESS_CONFIG.email}`;
+            const gmailUrl = new URL('https://mail.google.com/mail/');
+            gmailUrl.searchParams.set('view', 'cm');
+            gmailUrl.searchParams.set('fs', '1');
+            gmailUrl.searchParams.set('to', BUSINESS_CONFIG.email);
+            gmailUrl.searchParams.set('su', "Question for The Chef's World");
+            gmailUrl.searchParams.set('body', 'I would like to know about - ....');
+
+            window.open(gmailUrl.toString(), '_blank');
         }
 
         // ==========================================================================
