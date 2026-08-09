@@ -626,7 +626,1102 @@
 
         .comparison-table {
             width: 100%;
-         …12887 tokens truncated…ment.querySelectorAll('.nav-links a').forEach(link => {
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 800px;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .comparison-table th {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold-primary);
+            background: var(--bg-secondary);
+            position: sticky;
+            top: 0;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .mobile-comparison { display: none; }
+
+        /* ==========================================================================
+           HOW IT WORKS (PROCESS)
+           ========================================================================== */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .process-line {
+            position: absolute;
+            top: 40px;
+            left: 12%;
+            right: 12%;
+            height: 1px;
+            background: var(--border-gold);
+            z-index: 0;
+        }
+
+        .process-step {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-main);
+            border: 1px solid var(--gold-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            box-shadow: 0 0 0 10px var(--bg-main);
+        }
+
+        .process-step h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* ==========================================================================
+           TARGET SECTIONS (CHEFS / RESTAURANTS)
+           ========================================================================== */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+        }
+
+        .split-content {
+            padding: 8rem 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .split-content h2 { margin-bottom: 1.5rem; }
+        .split-content p { margin-bottom: 2.5rem; font-size: 1.15rem; max-width: 500px; }
+        
+        .split-list {
+            margin-bottom: 3rem;
+        }
+        
+        .split-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .split-list li::before {
+            content: '—';
+            color: var(--gold-primary);
+        }
+
+        .split-img {
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+            /* Placeholder styling */
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .split-img::after {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        /* ==========================================================================
+           FAQ ACCORDION
+           ========================================================================== */
+        .faq-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            padding: 1.5rem 0;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .faq-question:hover { color: var(--gold-primary); }
+
+        .faq-icon {
+            position: relative;
+            width: 16px;
+            height: 16px;
+        }
+
+        .faq-icon::before, .faq-icon::after {
+            content: '';
+            position: absolute;
+            background: currentColor;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: var(--transition-smooth);
+        }
+
+        .faq-icon::before { width: 100%; height: 2px; }
+        .faq-icon::after { width: 2px; height: 100%; }
+
+        .faq-item.active .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+        .faq-item.active .faq-question { color: var(--gold-primary); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding-bottom: 1.5rem;
+        }
+
+        /* ==========================================================================
+           TESTIMONIALS (COMING SOON)
+           ========================================================================== */
+        .testimonials-placeholder {
+            text-align: center;
+            padding: 6rem 0;
+            border: 1px dashed var(--border-gold);
+            background: rgba(207, 166, 105, 0.02);
+        }
+
+        .testimonials-placeholder h3 {
+            color: var(--gold-primary);
+            margin-bottom: 1rem;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        .footer {
+            border-top: 1px solid var(--border-light);
+            padding: 6rem 0 2rem;
+            background: #000;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-primary);
+        }
+
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: var(--text-secondary); font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--gold-primary); }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .footer-legal-links { display: flex; gap: 1.5rem; }
+
+        /* ==========================================================================
+           MODALS (ENQUIRY & NOTIFICATIONS & LEGAL)
+           ========================================================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-main);
+            border: 1px solid var(--border-gold);
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: var(--transition-smooth);
+            border-radius: 4px;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            padding: 2rem 2.5rem;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--bg-main);
+            z-index: 10;
+        }
+        
+        .modal-header h3 { font-size: 1.5rem; }
+        
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover { color: var(--gold-primary); }
+        
+        .modal-body { padding: 2.5rem; }
+
+        /* Form Styles */
+        .form-group { margin-bottom: 1.8rem; }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+        
+        .form-control {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            padding: 1rem;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            background: rgba(207, 166, 105, 0.05);
+        }
+        
+        .form-control[readonly] {
+            color: var(--gold-primary);
+            font-weight: 600;
+            border-color: var(--border-gold);
+            background: transparent;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .payment-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        
+        .payment-label:hover { border-color: var(--text-secondary); }
+        
+        .payment-label input:checked + span { color: var(--gold-primary); }
+        .payment-label input:checked { accent-color: var(--gold-primary); }
+        
+        .payment-notice {
+            font-size: 0.85rem;
+            color: var(--gold-primary);
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(207, 166, 105, 0.1);
+            border-left: 3px solid var(--gold-primary);
+        }
+
+        .validation-msg {
+            color: #ff6b6b;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Step 2 confirmation */
+        #step-2-content { display: none; text-align: center; padding: 2rem 0; }
+        #step-2-content h3 { font-size: 2rem; color: var(--gold-primary); margin-bottom: 1.5rem; }
+        #step-2-content p { margin-bottom: 2rem; font-size: 1.1rem; }
+        .step-2-buttons { display: flex; justify-content: center; gap: 1rem; }
+
+        /* Custom Scrollbar for modal */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: var(--bg-main); }
+        .modal-content::-webkit-scrollbar-thumb { background: var(--border-gold); }
+
+        /* ==========================================================================
+           RESPONSIVE DESIGN (MEDIA QUERIES)
+           ========================================================================== */
+        @media (max-width: 1200px) {
+            .packages-grid { grid-template-columns: repeat(3, 1fr); }
+            .process-line { display: none; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+        }
+
+        @media (max-width: 992px) {
+            h1 { font-size: 3rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .stat-item:not(:last-child)::after {
+                width: 50%; height: 1px; top: auto; bottom: -1.5rem; right: 25%;
+            }
+            .trust-grid { grid-template-columns: 1fr; }
+            .split-section { grid-template-columns: 1fr; }
+            .split-img { min-height: 400px; grid-row: 1; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .comparison-wrapper { display: none; }
+            .mobile-comparison { display: block; margin-top: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .packages-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links, .nav-right .btn { display: none; }
+            .mobile-toggle { display: flex; }
+            
+            /* Mobile Menu Active */
+            .nav-container.active .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: var(--nav-height);
+                left: 0;
+                width: 100%;
+                background: var(--bg-main);
+                padding: 2rem 5%;
+                border-bottom: 1px solid var(--border-light);
+            }
+            .nav-container.active .nav-right .btn {
+                display: flex; margin-top: 1.5rem; width: 100%;
+            }
+            
+            .hero h1 { font-size: 2.5rem; }
+            .hero-cta { flex-direction: column; }
+            .hero-cta .btn { width: 100%; }
+            
+            .process-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .payment-options { grid-template-columns: 1fr; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+
+        @media (max-width: 576px) {
+            .packages-grid { grid-template-columns: 1fr; }
+            .card-elegant { padding: 2.5rem 1.5rem; }
+            .package-card { padding: 2rem 1.5rem; }
+        }
+
+        /* Mobile Comparison Cards */
+        .mobile-comp-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            margin-bottom: 1rem;
+        }
+        .mobile-comp-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--gold-primary);
+            cursor: pointer;
+        }
+        .mobile-comp-body {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+        .mobile-comp-card.active .mobile-comp-body { display: block; }
+        .mobile-comp-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+        }
+        .mobile-comp-row:last-child { border-bottom: none; }
+        .mobile-comp-label { color: var(--text-secondary); }
+
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+         NAVIGATION
+         ========================================================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container" id="navContainer">
+            <a href="#" class="logo">
+                <span>THE</span>
+                <span>CHEF'S</span>
+                <span>WORLD</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <button class="btn btn-primary" onclick="openModal('custom')">START YOUR CAMPAIGN</button>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content scroll-reveal">
+                <div class="hero-label">Organic Social Ecosystem</div>
+                <h1>TURN YOUR CULINARY PASSION<br><span>INTO A POWERFUL PRESENCE.</span></h1>
+                <p>Put your profile in front of a growing ecosystem of food lovers, creators and social audiences through coordinated Instagram promotion designed to drive genuine profile discovery.</p>
+                <div class="hero-cta">
+                    <a href="#packages" class="btn btn-primary">EXPLORE PACKAGES</a>
+                    <button onclick="openModal('custom')" class="btn btn-secondary">START YOUR CAMPAIGN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         STATISTICS STRIP
+         ========================================================================== -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid scroll-reveal">
+                <div class="stat-item">
+                    <div class="stat-number"><span class="counter" data-target="1125">0</span>+</div>
+                    <div class="stat-label">Businesses Promoted</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number"><span class="counter" data-target="1000000" data-format="m">0</span>M+</div>
+                    <div class="stat-label">Monthly Audience Reach</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number"><span class="counter" data-target="15823">0</span>+</div>
+                    <div class="stat-label">Chefs Featured</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         CORE VALUE PROPOSITION & TRUST
+         ========================================================================== -->
+    <section id="why-us" class="section-padding">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <span class="subheading">MORE THAN A PROMOTION</span>
+                <h2>IT'S AN ECOSYSTEM.</h2>
+                <p class="mt-4" style="max-width: 600px; margin-inline: auto;">Your profile doesn't need another random post. It needs discovery. Repeated, coordinated visibility across relevant food communities creates familiarity, credibility and curiosity around your profile.</p>
+            </div>
+            
+            <div class="trust-grid scroll-reveal">
+                <div class="card-elegant">
+                    <div>
+                        <div class="card-icon">✧</div>
+                        <h3>REAL AUDIENCE</h3>
+                        <p>Relevant people discover your profile through food-focused social channels. No bots. No artificial engagement.</p>
+                    </div>
+                </div>
+                <div class="card-elegant">
+                    <div>
+                        <div class="card-icon">⚄</div>
+                        <h3>CREATOR ECOSYSTEM</h3>
+                        <p>Your campaign benefits from exposure across The Chef's World network, connected creators, and niche pages.</p>
+                    </div>
+                </div>
+                <div class="card-elegant">
+                    <div>
+                        <div class="card-icon">◎</div>
+                        <h3>PROFILE DISCOVERY</h3>
+                        <p>The goal isn't simply isolated visibility — it's getting the right people to consistently discover your culinary work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="statement-banner scroll-reveal">
+        <div class="container">
+            <h2>NO BOTS. NO FAKE ACCOUNTS.<br>NO SHORTCUTS.</h2>
+            <p>Our campaigns are designed strictly around organic exposure through real social audiences, food communities and creator networks.</p>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         SERVICES CATEGORIES
+         ========================================================================== -->
+    <section id="services" class="section-padding" style="background: var(--bg-secondary)">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <span class="subheading">OUR EXPERTISE</span>
+                <h2>PROMOTION CATEGORIES</h2>
+            </div>
+            
+            <div class="trust-grid scroll-reveal">
+                <div class="card-elegant" style="padding: 2.5rem">
+                    <h3 class="text-gold">INSTAGRAM PROMOTION</h3>
+                    <p>Strategic exposure designed to introduce your profile to a wider food-focused audience across our network.</p>
+                </div>
+                <div class="card-elegant" style="padding: 2.5rem">
+                    <h3 class="text-gold">REEL PROMOTION</h3>
+                    <p>Put your best culinary video content where discovery happens fastest, leveraging Instagram's most engaging format.</p>
+                </div>
+                <div class="card-elegant" style="padding: 2.5rem">
+                    <h3 class="text-gold">FOOD & CHEF BRANDING</h3>
+                    <p>Showcase your signature dishes, culinary identity, restaurant, or personal brand through targeted promotion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         PACKAGES SECTION
+         ========================================================================== -->
+    <section id="packages" class="section-padding">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <span class="subheading">SELECT YOUR CAMPAIGN</span>
+                <h2>PROMOTIONAL PACKAGES</h2>
+                <p class="mt-4">Choose the commitment level that matches your growth objective. Every package leverages our authentic creator ecosystem.</p>
+            </div>
+
+            <!-- Dynamically populated via JS -->
+            <div class="packages-grid scroll-reveal" id="packagesContainer">
+                <!-- Packages injected here -->
+            </div>
+            
+            <div class="custom-campaign-box scroll-reveal">
+                <h3>NEED SOMETHING SPECIFIC?</h3>
+                <p>Need a campaign built around a specific launch, restaurant opening, chef profile or food brand? Let's build your custom campaign.</p>
+                <button class="btn btn-outline-light" onclick="openModal('custom')">REQUEST CUSTOM CAMPAIGN</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         COMPARISON SECTION
+         ========================================================================== -->
+    <section class="section-padding" style="background: var(--bg-secondary); padding-top: 4rem;">
+        <div class="container">
+            <div class="section-header scroll-reveal" style="margin-bottom: 2rem;">
+                <h2>COMPARE CAMPAIGNS</h2>
+            </div>
+
+            <!-- Desktop Table (Injected via JS) -->
+            <div class="comparison-wrapper scroll-reveal">
+                <table class="comparison-table" id="comparisonTable">
+                    <!-- Table injected here -->
+                </table>
+            </div>
+
+            <!-- Mobile Stacked Cards (Injected via JS) -->
+            <div class="mobile-comparison scroll-reveal" id="mobileComparisonContainer">
+                <!-- Mobile cards injected here -->
+            </div>
+            
+            <p class="text-muted mt-4 text-center scroll-reveal" style="font-size: 0.85rem; max-width: 800px; margin-inline: auto;">
+                *Campaign targets represent the audience-growth commitment associated with the selected package. Actual performance may vary depending on content quality, audience response, platform behavior and campaign conditions. Engagement, sales, bookings and revenue are not guaranteed.
+            </p>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         HOW IT WORKS
+         ========================================================================== -->
+    <section id="how-it-works" class="section-padding">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <span class="subheading">THE PROCESS</span>
+                <h2>HOW IT WORKS</h2>
+            </div>
+
+            <div class="process-grid scroll-reveal">
+                <div class="process-line"></div>
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <h4>CHOOSE YOUR CAMPAIGN</h4>
+                    <p>Select the package that matches your specific growth objective.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <h4>SEND YOUR PROFILE</h4>
+                    <p>Share your Instagram and business details via our enquiry form.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <h4>SEND YOUR CONTENT</h4>
+                    <p>Provide your photos, videos, Reels and creative direction via email.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <h4>GET DISCOVERED</h4>
+                    <p>Your content enters The Chef's World promotional ecosystem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         TARGET SECTIONS (CHEFS & RESTAURANTS)
+         ========================================================================== -->
+    <section class="split-section">
+        <div class="split-img scroll-reveal">
+            <!-- Background handled in CSS, acts as placeholder for high-end food/chef imagery -->
+        </div>
+        <div class="split-content scroll-reveal" style="background: var(--bg-secondary);">
+            <span class="subheading" style="color: var(--gold-primary); letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem; display: block; font-family: var(--font-heading);">FOR CHEFS</span>
+            <h2>CHEFS DESERVE TO BE DISCOVERED.</h2>
+            <p>Your food tells a story. Your profile should tell the world. Use our network to build visibility, introduce your culinary identity, and attract true food lovers.</p>
+            <ul class="split-list text-secondary">
+                <li>Showcase signature dishes to a wider audience</li>
+                <li>Grow your personal Instagram presence</li>
+                <li>Build recognition within food communities</li>
+            </ul>
+            <div>
+                <button class="btn btn-outline-light" onclick="openModal('custom')">PROMOTE MY CHEF PROFILE</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="split-section">
+        <div class="split-content scroll-reveal" style="background: var(--bg-main);">
+            <span class="subheading" style="color: var(--gold-primary); letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem; display: block; font-family: var(--font-heading);">FOR RESTAURANTS</span>
+            <h2>YOUR RESTAURANT DESERVES A BIGGER TABLE.</h2>
+            <p>Expand your digital footprint beyond your current followers. We help restaurants place their atmosphere, menu, and brand in front of targeted local and global food enthusiasts.</p>
+            <ul class="split-list text-secondary">
+                <li>Dish discovery and brand awareness</li>
+                <li>Food content and Reel promotion</li>
+                <li>New audience discovery</li>
+            </ul>
+            <div>
+                <button class="btn btn-outline-light" onclick="openModal('custom')">PROMOTE MY RESTAURANT</button>
+            </div>
+        </div>
+        <div class="split-img scroll-reveal" style="background: radial-gradient(circle at center, #111 0%, #000 100%);">
+            <!-- Image placeholder -->
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTENT SUBMISSION
+         ========================================================================== -->
+    <section class="section-padding text-center" style="background: var(--bg-card); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+        <div class="container scroll-reveal">
+            <h2 style="margin-bottom: 1.5rem;">READY TO SEND YOUR CONTENT?</h2>
+            <p style="max-width: 600px; margin: 0 auto 2.5rem; font-size: 1.15rem;">Have photographs, food videos or Reels you'd like us to promote? Send your content and any creative direction directly to our team.</p>
+            <button onclick="sendContentEmail()" class="btn btn-primary">SEND YOUR CONTENT</button>
+            <p class="text-muted mt-4" style="font-size: 0.9rem;">Attach your photographs, videos or other campaign assets after your email window opens.</p>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         TESTIMONIALS (READY FOR FUTURE)
+         ========================================================================== -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <span class="subheading">PROVEN RESULTS</span>
+                <h2>TRUST IS BUILT ONE CAMPAIGN AT A TIME.</h2>
+            </div>
+            
+            <div class="testimonials-placeholder scroll-reveal">
+                <h3>CLIENT STORIES COMING SOON</h3>
+                <p>We are compiling case studies and reviews from our latest campaigns.</p>
+                <!-- 
+                FUTURE TESTIMONIAL CARDS HTML STRUCTURE
+                <div class="trust-grid">
+                    <div class="card-elegant">
+                        <p>"Review text here..."</p>
+                        <h4 class="mt-4 text-gold">CHEF NAME</h4>
+                        <span class="text-secondary">@instagram</span>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         FAQ SECTION
+         ========================================================================== -->
+    <section id="faq" class="section-padding" style="background: var(--bg-secondary)">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <span class="subheading">QUESTIONS</span>
+                <h2>FREQUENTLY ASKED QUESTIONS</h2>
+            </div>
+
+            <div class="faq-wrapper scroll-reveal">
+                <!-- FAQs -->
+                <div class="faq-item">
+                    <div class="faq-question">What is The Chef's World? <span class="faq-icon"></span></div>
+                    <div class="faq-answer"><p>We are a specialized promotional ecosystem that helps chefs, food creators, and food businesses grow their Instagram presence through coordinated organic social media exposure.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are the audiences organic? Do you use bots? <span class="faq-icon"></span></div>
+                    <div class="faq-answer"><p>Our audience is 100% organic. NO BOTS. NO FAKE ACCOUNTS. Our campaigns are designed around real exposure through authentic social audiences and food communities.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What does the follower/audience target mean? <span class="faq-icon"></span></div>
+                    <div class="faq-answer"><p>The campaign target represents the minimum audience-growth commitment associated with your selected package. It is a benchmark for the scale of discovery we aim to provide through our network.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How does the creator ecosystem work? <span class="faq-icon"></span></div>
+                    <div class="faq-answer"><p>Instead of relying on a single isolated post, we utilize our main platforms alongside a network of connected food creators and niche pages to provide repeated, coordinated visibility across multiple discovery points.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I send my own photographs and videos? <span class="faq-icon"></span></div>
+                    <div class="faq-answer"><p>Yes, absolutely. We promote your authentic content. After selecting a package, you can email us your photos, Reels, and any specific creative instructions.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Which payment methods are accepted? <span class="faq-icon"></span></div>
+                    <div class="faq-answer"><p>We accept PayPal, Venmo, Zelle, and Cash App. Payment instructions are provided securely via email after we review and confirm your campaign details.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are engagement or sales guaranteed? <span class="faq-icon"></span></div>
+                    <div class="faq-answer"><p>Audience and follower-growth commitments relate to the selected campaign target. Engagement (likes/comments), sales, bookings, and other business outcomes can vary significantly based on content quality, market conditions, and platform behavior, and are therefore not guaranteed.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         FINAL CTA
+         ========================================================================== -->
+    <section class="section-padding text-center">
+        <div class="container scroll-reveal">
+            <h2 style="font-size: clamp(3rem, 6vw, 5rem); color: var(--gold-primary); margin-bottom: 1.5rem;">YOUR NEXT AUDIENCE<br>IS WAITING.</h2>
+            <p style="font-size: 1.25rem; max-width: 700px; margin: 0 auto 3rem;">Tell us what you're building, choose your campaign and put your profile in front of a wider food-focused audience.</p>
+            <div class="hero-cta" style="justify-content: center;">
+                <button onclick="openModal('custom')" class="btn btn-primary">START YOUR CAMPAIGN</button>
+                <button onclick="sendContentEmail()" class="btn btn-secondary">SEND YOUR CONTENT</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         FOOTER
+         ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="grid-column: span 1;">
+                    <a href="#" class="logo" style="margin-bottom: 1.5rem;">
+                        <span>THE</span>
+                        <span>CHEF'S</span>
+                        <span>WORLD</span>
+                    </a>
+                    <p style="font-size: 0.9rem; max-width: 250px;">Premium social media promotion for chefs, food creators and businesses.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>NAVIGATION</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#packages">Packages</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>CONTACT</h4>
+                    <ul class="footer-links">
+                        <li id="footerEmail"></li>
+                        <li id="footerIg"></li>
+                    </ul>
+                    <button onclick="openContactEmail()" class="btn btn-outline-light mt-4" style="padding: 0.5rem 1rem; font-size: 0.8rem;">EMAIL US</button>
+                </div>
+                <div class="footer-col">
+                    <h4>ACCEPTED PAYMENTS</h4>
+                    <ul class="footer-links text-secondary">
+                        <li>PayPal</li>
+                        <li>Venmo</li>
+                        <li>Zelle</li>
+                        <li>Cash App</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 The Chef's World. All rights reserved.</div>
+                <div class="footer-legal-links">
+                    <a href="#" onclick="openLegalModal('privacy', event)">Privacy Policy</a>
+                    <a href="#" onclick="openLegalModal('terms', event)">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         ENQUIRY MODAL
+         ========================================================================== -->
+    <div class="modal-overlay" id="enquiryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>START CAMPAIGN</h3>
+                <button class="modal-close" onclick="closeModal('enquiryModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- STEP 1: FORM -->
+                <div id="step-1-content">
+                    <p class="text-secondary mb-2" style="margin-bottom: 2rem;">Please provide your details below. Your information will be securely drafted into an email for your review.</p>
+                    
+                    <form id="enquiryForm" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label class="form-label">Selected Package</label>
+                            <input type="text" id="formPackage" class="form-control" readonly>
+                            <input type="hidden" id="formPackageData">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" id="formName" class="form-control" required placeholder="Chef John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" id="formEmail" class="form-control" required placeholder="contact@example.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Instagram Username *</label>
+                                <input type="text" id="formIg" class="form-control" required placeholder="@yourhandle">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Other Social Links (Optional)</label>
+                                <input type="text" id="formSocial" class="form-control" placeholder="TikTok, Website, etc.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Business / Profile Description *</label>
+                            <textarea id="formDesc" class="form-control" required placeholder="Tell us briefly about your culinary focus, restaurant, or goals..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Campaign Remarks / Creative Direction (Optional)</label>
+                            <textarea id="formRemarks" class="form-control" placeholder="Any specific instructions on how we should present your content?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Preferred Payment Method *</label>
+                            <div class="payment-options">
+                                <label class="payment-label">
+                                    <input type="radio" name="paymentMethod" value="PayPal" required> <span>PayPal</span>
+                                </label>
+                                <label class="payment-label">
+                                    <input type="radio" name="paymentMethod" value="Venmo"> <span>Venmo</span>
+                                </label>
+                                <label class="payment-label">
+                                    <input type="radio" name="paymentMethod" value="Zelle"> <span>Zelle</span>
+                                </label>
+                                <label class="payment-label">
+                                    <input type="radio" name="paymentMethod" value="Cash App"> <span>Cash App</span>
+                                </label>
+                            </div>
+                            <div id="paymentError" class="validation-msg">Please select a payment method.</div>
+                            <div class="payment-notice">
+                                Payment instructions will be provided directly by The Chef's World after your campaign details are reviewed. Do not enter payment credentials here.
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">REVIEW & PROCEED</button>
+                    </form>
+                </div>
+
+                <!-- STEP 2: CONFIRMATION & MAILTO TRIGGER -->
+                <div id="step-2-content">
+                    <h3>ONE LAST STEP</h3>
+                    <p>Before your email app opens, please remember to attach any photographs or videos you'd like to include with your campaign.</p>
+                    <p class="text-secondary" style="font-size: 0.95rem; margin-bottom: 2.5rem;">Your email is ready to be sent securely to The Chef's World team.</p>
+                    <div class="step-2-buttons">
+                        <button type="button" class="btn btn-outline-light" onclick="goBackToStep1()">GO BACK</button>
+                        <button type="button" class="btn btn-primary" onclick="executeMailto()">OPEN EMAIL</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         LEGAL MODALS (Privacy / Terms)
+         ========================================================================== -->
+    <div class="modal-overlay" id="legalModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="legalTitle">Terms</h3>
+                <button class="modal-close" onclick="closeModal('legalModal')">&times;</button>
+            </div>
+            <div class="modal-body text-secondary" id="legalBody" style="font-size: 0.95rem;">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==========================================================================
+         JAVASCRIPT FUNCTIONALITY
+         ========================================================================== -->
+    <script>
+        // ==========================================================================
+        // EDITABLE BUSINESS CONFIGURATION
+        // ==========================================================================
+        const BUSINESS_CONFIG = {
+            name: "The Chef's World",
+            email: "chefsworldglobal@gmail.com",
+            instagram: "@the.chefs.world",
+            instagramUrl: "https://instagram.com/the.chefs.world",
+            paymentMethods: ["PayPal", "Venmo", "Zelle", "Cash App"]
+        };
+
+        // ==========================================================================
+        // EDITABLE PACKAGE DATA
+        // ==========================================================================
+        const PACKAGES_DATA = [
+            { id: 'starter', name: 'STARTER BOOST', price: 59, posts: 1, stories: 1, reels: 0, highlight: 'Yes', target: '2K+', duration: '2 Days', popular: false },
+            { id: 'essential', name: 'ESSENTIAL REACH', price: 89, posts: 2, stories: 2, reels: 1, highlight: 'Yes', target: '3K–4K+', duration: '5 Days', popular: false },
+            { id: 'growth', name: 'GROWTH PRO', price: 129, posts: 3, stories: 3, reels: 1, highlight: 'Yes', target: '4K–6K+', duration: '7 Days', popular: true },
+            { id: 'advanced', name: 'ADVANCED GROWTH', price: 179, posts: 5, stories: 5, reels: 2, highlight: 'Yes', target: '6K–8K+', duration: '10 Days', popular: false },
+            { id: 'premium', name: 'PREMIUM REACH', price: 239, posts: 8, stories: 8, reels: 3, highlight: 'Yes', target: '9K–13K+', duration: '14 Days', popular: false },
+            { id: 'professional', name: 'PROFESSIONAL REACH', price: 299, posts: 10, stories: 10, reels: 4, highlight: 'Yes', target: '13K–17K+', duration: '18 Days', popular: false },
+            { id: 'influencer', name: 'INFLUENCER ELITE', price: 399, posts: 15, stories: 15, reels: 5, highlight: 'Yes', target: '22K–25K+', duration: '21 Days', popular: false },
+            { id: 'signature', name: 'SIGNATURE GROWTH', price: 499, posts: 18, stories: 18, reels: 7, highlight: 'Yes', target: '28K–35K+', duration: '24 Days', popular: false },
+            { id: 'authority', name: 'CHEF\'S AUTHORITY', price: 649, posts: 22, stories: 22, reels: 9, highlight: 'Yes', target: '40K–50K+', duration: '26 Days', popular: false },
+            { id: 'dominance', name: 'CULINARY DOMINANCE', price: 849, posts: 28, stories: 28, reels: 12, highlight: 'Yes', target: '55K–70K+', duration: '28 Days', popular: false },
+            { id: 'elite', name: 'CHEF\'S WORLD ELITE', price: 1099, posts: 35, stories: 35, reels: 15, highlight: 'Yes', target: '80K–100K+', duration: '30 Days', popular: false }
+        ];
+
+        let generatedMailtoLink = "";
+
+        // ==========================================================================
+        // INITIALIZATION
+        // ==========================================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            initUI();
+            renderPackages();
+            renderComparisonTable();
+            initScrollObserver();
+            initFAQ();
+            populateFooter();
+        });
+
+        function initUI() {
+            // Sticky Navbar
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile Menu
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navContainer = document.getElementById('navContainer');
+            
+            mobileToggle.addEventListener('click', () => {
+                navContainer.classList.toggle('active');
+            });
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     navContainer.classList.remove('active');
                 });
