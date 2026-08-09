@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chef's World | Premium Instagram Promotion for Chefs & Food Brands</title>
+    <meta name="description" content="The Chef's World helps chefs, food creators and food businesses grow their Instagram presence through organic social media promotion, Reel promotion and a connected food creator ecosystem.">
+    <meta name="keywords" content="Instagram promotion, chef promotion, restaurant marketing, organic audience, food creators, social media marketing">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="The Chef's World | Premium Instagram Promotion">
+    <meta property="og:description" content="Grow your culinary presence with authentic, organic audience discovery. No bots. No fake accounts.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thechefsworld.com">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/0a0a0a/cfa669?text=THE+CHEF%27S+WORLD">
+    
+    <!-- Fonts: Space Grotesk (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           CSS VARIABLES & DESIGN SYSTEM
+           ========================================================================== */
+        :root {
+            --bg-main: #050505;
+            --bg-secondary: #0a0a0a;
+            --bg-card: rgba(15, 15, 15, 0.8);
+            --bg-card-hover: rgba(20, 20, 20, 0.95);
+            
+            --text-primary: #fcfcfc;
+            --text-secondary: #a3a3a3;
+            --text-muted: #666666;
+            
+            --gold-primary: #cfa669;
+            --gold-secondary: #b08d55;
+            --gold-muted: rgba(207, 166, 105, 0.15);
+            --gold-glow: rgba(207, 166, 105, 0.05);
+            
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-gold: rgba(207, 166, 105, 0.3);
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --container-width: 1280px;
+            --nav-height: 90px;
+            
+            --glass-bg: rgba(5, 5, 5, 0.7);
+            --glass-blur: blur(16px);
+        }
+
+        /* ==========================================================================
+           RESET & BASE STYLES
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
+        h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+        
+        p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .text-gold { color: var(--gold-primary); }
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 2rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        
+        .section-padding { padding: 8rem 0; }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           COMPONENTS
+           ========================================================================== */
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background-color: var(--gold-primary);
+            color: var(--bg-main);
+            border-color: var(--gold-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--gold-primary);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--gold-primary);
+            border-color: var(--gold-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--gold-primary);
+            color: var(--bg-main);
+        }
+        
+        .btn-outline-light {
+            background-color: transparent;
+            color: var(--text-primary);
+            border-color: var(--border-light);
+        }
+        
+        .btn-outline-light:hover {
+            border-color: var(--text-primary);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ==========================================================================
+           NAVIGATION
+           ========================================================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 1000;
+            background: transparent;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--gold-primary);
+            cursor: pointer;
+        }
+
+        .logo span {
+            display: block;
+        }
+        
+        .logo span:nth-child(2) {
+            margin-left: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold-primary);
+            transition: var(--transition-smooth);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: var(--transition-smooth);
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--nav-height);
+            background: radial-gradient(circle at 70% 30%, rgba(207, 166, 105, 0.1) 0%, rgba(5, 5, 5, 1) 60%),
+                        linear-gradient(180deg, rgba(5, 5, 5, 0.2) 0%, #050505 100%);
+            overflow: hidden;
+        }
+        
+        /* Subtle texture overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-label {
+            font-family: var(--font-heading);
+            color: var(--gold-primary);
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            border: 1px solid var(--border-gold);
+            padding: 0.5rem 1rem;
+            border-radius: 2px;
+        }
+
+        .hero h1 {
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+        
+        .hero h1 span {
+            color: var(--gold-primary);
+            display: block;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin-bottom: 3rem;
+            color: #d1d1d1;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* ==========================================================================
+           STATS SECTION
+           ========================================================================== */
+        .stats-section {
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 10%;
+            height: 80%;
+            width: 1px;
+            background: var(--border-light);
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           VALUE PROPOSITION / ORGANIC TRUST
+           ========================================================================== */
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-header .subheading {
+            color: var(--gold-primary);
+            font-family: var(--font-heading);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .card-elegant {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 3.5rem 2.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-elegant:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+            box-shadow: 0 20px 40px var(--gold-glow);
+        }
+
+        .card-elegant h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .card-icon {
+            color: var(--gold-primary);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Large Bold Statement Area */
+        .statement-banner {
+            background: var(--gold-primary);
+            color: var(--bg-main);
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .statement-banner h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        
+        .statement-banner p {
+            color: rgba(5, 5, 5, 0.8);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+
+        /* ==========================================================================
+           PACKAGES SECTION
+           ========================================================================== */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .package-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 2.5rem 2rem;
+            position: relative;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .package-card:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px var(--gold-glow);
+        }
+        
+        .package-card.popular {
+            border-color: var(--gold-primary);
+            background: linear-gradient(180deg, rgba(207, 166, 105, 0.05) 0%, rgba(15, 15, 15, 0.9) 100%);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold-primary);
+            color: var(--bg-main);
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .pkg-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold-primary);
+        }
+
+        .pkg-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.2rem;
+        }
+
+        .pkg-features {
+            flex-grow: 1;
+            margin-bottom: 2.5rem;
+        }
+
+        .pkg-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pkg-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pkg-features li::before {
+            content: '✓';
+            color: var(--gold-primary);
+            font-weight: bold;
+        }
+
+        .pkg-target-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pkg-target-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .pkg-target-val {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .package-card .btn {
+            width: 100%;
+        }
+
+        .custom-campaign-box {
+            grid-column: 1 / -1;
+            margin-top: 3rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-gold);
+            padding: 4rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-campaign-box h3 { margin-bottom: 1rem; }
+        .custom-campaign-box p { max-width: 600px; margin-bottom: 2rem; }
+
+        /* ==========================================================================
+           COMPARISON TABLE
+           ========================================================================== */
+        .comparison-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 4rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+         …12887 tokens truncated…ment.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navContainer.classList.remove('active');
+                });
+            });
+
+            // Close modals on Escape key or outside click
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeAllModals();
+                }
+            });
+            
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeAllModals();
+                    }
+                });
+            });
+        }
+
+        // ==========================================================================
+        // DOM GENERATION (Packages & Comparison)
+        // ==========================================================================
+        function renderPackages() {
+            const container = document.getElementById('packagesContainer');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            PACKAGES_DATA.forEach(pkg => {
+                const isPopular = pkg.popular ? '<div class="popular-badge">MOST POPULAR</div>' : '';
+                const cardClass = pkg.popular ? 'package-card popular' : 'package-card';
+                
+                const html = `
+                    <div class="${cardClass}">
+                        ${isPopular}
+                        <h3 class="pkg-name">${pkg.name}</h3>
+                        <div class="pkg-price"><span style="font-size: 1.5rem; color: var(--gold-primary);">$</span>${pkg.price}</div>
+                        
+                        <div class="pkg-target-box">
+                            <div class="pkg-target-label">Campaign Target</div>
+                            <div class="pkg-target-val">${pkg.target}</div>
+                        </div>
+
+                        <ul class="pkg-features">
+                            <li>${pkg.posts} Feed Post${pkg.posts > 1 ? 's' : ''}</li>
+                            <li>${pkg.stories} Story Feature${pkg.stories > 1 ? 's' : ''}</li>
+                            ${pkg.reels > 0 ? `<li>${pkg.reels} Reel Promotion${pkg.reels > 1 ? 's' : ''}</li>` : ''}
+                            <li>Highlight Placement</li>
+                            <li>${pkg.duration} Campaign</li>
+                        </ul>
+                        
+                        <button class="btn btn-outline-light" onclick="openModal('${pkg.id}')">GET STARTED</button>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderComparisonTable() {
+            const desktopTable = document.getElementById('comparisonTable');
+            const mobileContainer = document.getElementById('mobileComparisonContainer');
+            
+            if (!desktopTable || !mobileContainer) return;
+
+            // Desktop Table Build
+            let tableHTML = `
+                <thead>
+                    <tr>
+                        <th>Package</th>
+                        <th>Price</th>
+                        <th>Target</th>
+                        <th>Duration</th>
+                        <th>Posts</th>
+                        <th>Stories</th>
+                        <th>Reels</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+            
+            // Mobile Stacked Cards Build
+            let mobileHTML = '';
+
+            PACKAGES_DATA.forEach(pkg => {
+                // Desktop row
+                tableHTML += `
+                    <tr>
+                        <td style="color: var(--text-primary); font-weight: 500;">${pkg.name}</td>
+                        <td style="color: var(--gold-primary); font-family: var(--font-heading);">$${pkg.price}</td>
+                        <td>${pkg.target}</td>
+                        <td>${pkg.duration}</td>
+                        <td>${pkg.posts}</td>
+                        <td>${pkg.stories}</td>
+                        <td>${pkg.reels}</td>
+                        <td><button class="btn btn-outline-light" style="padding: 0.5rem 1rem; font-size: 0.75rem;" onclick="openModal('${pkg.id}')">SELECT</button></td>
+                    </tr>
+                `;
+
+                // Mobile Card
+                mobileHTML += `
+                    <div class="mobile-comp-card">
+                        <div class="mobile-comp-header" onclick="toggleMobileCard(this)">
+                            ${pkg.name} - $${pkg.price}
+                            <span>+</span>
+                        </div>
+                        <div class="mobile-comp-body">
+                            <div class="mobile-comp-row">
+                                <span class="mobile-comp-label">Target Audience</span>
+                                <span style="font-weight: 600; color: var(--text-primary);">${pkg.target}</span>
+                            </div>
+                            <div class="mobile-comp-row">
+                                <span class="mobile-comp-label">Duration</span>
+                                <span>${pkg.duration}</span>
+                            </div>
+                            <div class="mobile-comp-row">
+                                <span class="mobile-comp-label">Feed Posts</span>
+                                <span>${pkg.posts}</span>
+                            </div>
+                            <div class="mobile-comp-row">
+                                <span class="mobile-comp-label">Story Features</span>
+                                <span>${pkg.stories}</span>
+                            </div>
+                            <div class="mobile-comp-row">
+                                <span class="mobile-comp-label">Reel Promotions</span>
+                                <span>${pkg.reels}</span>
+                            </div>
+                            <div class="mobile-comp-row" style="border: none; margin-top: 1rem; padding: 0;">
+                                <button class="btn btn-outline-light" style="width: 100%;" onclick="openModal('${pkg.id}')">SELECT PACKAGE</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            tableHTML += `</tbody>`;
+            desktopTable.innerHTML = tableHTML;
+            mobileContainer.innerHTML = mobileHTML;
+        }
+
+        function toggleMobileCard(element) {
+            const card = element.parentElement;
+            card.classList.toggle('active');
+            const span = element.querySelector('span');
+            span.textContent = card.classList.contains('active') ? '-' : '+';
+        }
+
+        // ==========================================================================
+        // SCROLL REVEAL & COUNTERS
+        // ==========================================================================
+        function initScrollObserver() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Trigger counters if inside a stats section
+                        if (entry.target.classList.contains('stats-grid')) {
+                            startCounters();
+                        }
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        function startCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText.replace(/,/g, '');
+                    const format = counter.getAttribute('data-format');
+                    
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        let current = Math.ceil(count + inc);
+                        if(format === 'm' && target === 1000000) {
+                             counter.innerText = '1';
+                             return;
+                        } else {
+                             counter.innerText = current.toLocaleString();
+                        }
+                        setTimeout(updateCount, 15);
+                    } else {
+                        if(format === 'm' && target >= 1000000) {
+                             counter.innerText = (target / 1000000);
+                        } else {
+                             counter.innerText = target.toLocaleString();
+                        }
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all
+                    faqItems.forEach(faq => {
+                        faq.classList.remove('active');
+                        faq.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    
+                    // Open clicked if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const answer = item.querySelector('.faq-answer');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+        }
+
+        function populateFooter() {
+            document.getElementById('footerEmail').innerHTML = `<a href="mailto:${BUSINESS_CONFIG.email}">${BUSINESS_CONFIG.email}</a>`;
+            document.getElementById('footerIg').innerHTML = `<a href="${BUSINESS_CONFIG.instagramUrl}" target="_blank">${BUSINESS_CONFIG.instagram}</a>`;
+        }
+
+        // ==========================================================================
+        // MODALS & FORM LOGIC
+        // ==========================================================================
+        function openModal(packageId) {
+            const modal = document.getElementById('enquiryModal');
+            const packageInput = document.getElementById('formPackage');
+            const packageDataInput = document.getElementById('formPackageData');
+            
+            // Reset state
+            goBackToStep1();
+            document.getElementById('enquiryForm').reset();
+            document.getElementById('paymentError').style.display = 'none';
+
+            if (packageId === 'custom') {
+                packageInput.value = "CUSTOM CAMPAIGN";
+                packageDataInput.value = JSON.stringify({ name: "CUSTOM CAMPAIGN", price: "Custom", custom: true });
+            } else {
+                const pkg = PACKAGES_DATA.find(p => p.id === packageId);
+                if (pkg) {
+                    packageInput.value = `${pkg.name} — $${pkg.price}`;
+                    packageDataInput.value = JSON.stringify(pkg);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        function closeAllModals() {
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.classList.remove('modal-open');
+        }
+
+        function goBackToStep1() {
+            document.getElementById('step-1-content').style.display = 'block';
+            document.getElementById('step-2-content').style.display = 'none';
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            // Validation
+            const paymentRadios = document.getElementsByName('paymentMethod');
+            let selectedPayment = null;
+            for (let radio of paymentRadios) {
+                if (radio.checked) selectedPayment = radio.value;
+            }
+            
+            if (!selectedPayment) {
+                document.getElementById('paymentError').style.display = 'block';
+                return;
+            }
+            document.getElementById('paymentError').style.display = 'none';
+
+            // Gather Data
+            const name = document.getElementById('formName').value;
+            const email = document.getElementById('formEmail').value;
+            const ig = document.getElementById('formIg').value;
+            const social = document.getElementById('formSocial').value || 'None provided';
+            const desc = document.getElementById('formDesc').value;
+            const remarks = document.getElementById('formRemarks').value || 'None provided';
+            
+            const pkgRaw = document.getElementById('formPackageData').value;
+            const pkgData = JSON.parse(pkgRaw);
+
+            // Construct Email Body
+            const subjectTitle = pkgData.custom ? 'Custom Campaign' : pkgData.name;
+            const subject = `New Campaign Enquiry — ${subjectTitle}`;
+            
+            let bodyData = `THE CHEF'S WORLD\r\nNEW CAMPAIGN ENQUIRY\r\n\r\n`;
+            bodyData += `Name: ${name}\r\nEmail: ${email}\r\nInstagram Username: ${ig}\r\nSocial Media Links: ${social}\r\n`;
+            
+            if (pkgData.custom) {
+                bodyData += `Selected Package: CUSTOM CAMPAIGN\r\n`;
+            } else {
+                bodyData += `Selected Package: ${pkgData.name}\r\nPrice: $${pkgData.price}\r\nCampaign Duration: ${pkgData.duration}\r\n`;
+                bodyData += `Feed Posts: ${pkgData.posts}\r\nStory Features: ${pkgData.stories}\r\nReel Promotions: ${pkgData.reels}\r\n`;
+                bodyData += `Estimated Campaign Target: ${pkgData.target}\r\n`;
+            }
+
+            bodyData += `\r\nBusiness / Profile Description:\r\n${desc}\r\n\r\n`;
+            bodyData += `Campaign Remarks / Creative Direction:\r\n${remarks}\r\n\r\n`;
+            bodyData += `Preferred Payment Method: ${selectedPayment}\r\n`;
+
+            generatedMailtoLink = `mailto:${BUSINESS_CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyData)}`;
+
+            // Transition to Step 2
+            document.getElementById('step-1-content').style.display = 'none';
+            document.getElementById('step-2-content').style.display = 'block';
+            
+            // Scroll modal to top
+            document.querySelector('#enquiryModal .modal-content').scrollTop = 0;
+        }
+
+        function executeMailto() {
+            if (generatedMailtoLink) {
+                window.location.href = generatedMailtoLink;
+                // Keep modal open so they can go back if email client fails, but normally it just opens the client.
+            }
+        }
+
+        // ==========================================================================
+        // OTHER EMAIL FUNCTIONS
+        // ==========================================================================
+        function sendContentEmail() {
+            const subject = "Content Submission — The Chef's World";
+            const body = `Hello The Chef's World,\r\n\r\nI would like to submit content for promotion.\r\n\r\nName: \r\nInstagram Username: \r\nSelected Package: \r\n\r\nContent Notes:\r\n[Please add any specific instructions here]\r\n\r\nI have attached the photographs/videos to this email.\r\n\r\nRegards,`;
+            window.location.href = `mailto:${BUSINESS_CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function openContactEmail() {
+            window.location.href = `mailto:${BUSINESS_CONFIG.email}`;
+        }
+
+        // ==========================================================================
+        // LEGAL MODALS
+        // ==========================================================================
+        function openLegalModal(type, event) {
+            event.preventDefault();
+            const modal = document.getElementById('legalModal');
+            const title = document.getElementById('legalTitle');
+            const body = document.getElementById('legalBody');
+
+            if (type === 'privacy') {
+                title.innerText = "Privacy Policy";
+                body.innerHTML = `
+                    <p style="margin-bottom:1rem;"><strong>Information Collection:</strong> We collect only the information provided voluntarily via our enquiry email system (name, email, social media handles, and business descriptions) for the sole purpose of organizing your promotional campaign.</p>
+                    <p style="margin-bottom:1rem;"><strong>Data Usage:</strong> Your information is used strictly to communicate regarding services, confirm payment preferences, and execute social media promotion.</p>
+                    <p style="margin-bottom:1rem;"><strong>Third Parties:</strong> We do not sell, trade, or distribute your personal data or payment preferences to unauthorized third parties.</p>
+                    <p><strong>Security:</strong> All communication happens directly via secure email clients. We do not ask for or store passwords to your social media accounts, nor do we process payments directly on this website.</p>
+                `;
+            } else if (type === 'terms') {
+                title.innerText = "Terms & Conditions";
+                body.innerHTML = `
+                    <p style="margin-bottom:1rem;"><strong>Services Provided:</strong> The Chef's World provides coordinated social media exposure. Campaign targets represent the audience-growth commitment associated with the selected package.</p>
+                    <p style="margin-bottom:1rem;"><strong>No Guarantees of Revenue:</strong> Actual performance, engagement rates, sales, restaurant bookings, and revenue are not guaranteed and depend entirely on content quality, audience reception, and third-party platform algorithms.</p>
+                    <p style="margin-bottom:1rem;"><strong>Content Rights:</strong> By submitting photographs, videos, or Reels to our team, you confirm that you own the rights to the media and grant us permission to post it across our network for the duration of the campaign.</p>
+                    <p><strong>Payment:</strong> Payment must be cleared via agreed third-party platforms (PayPal, Venmo, Zelle, or Cash App) prior to the commencement of the campaign schedule.</p>
+                `;
+            }
+
+            modal.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+    </script>
+</body>
+</html>
