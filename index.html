@@ -2094,12 +2094,8 @@
             document.querySelector('#enquiryModal .modal-content').scrollTop = 0;
         }
 
-        function executeMailto() {
-            if (!generatedMailtoLink) return;
-
-            // Open Gmail directly instead of relying on a mailto: handler being
-            // configured in the visitor's browser or operating system.
-            const [recipient, query = ''] = generatedMailtoLink.slice('mailto:'.length).split('?');
+        function getGmailWebUrl(mailtoLink) {
+            const [recipient, query = ''] = mailtoLink.slice('mailto:'.length).split('?');
             const mailParams = new URLSearchParams(query);
             const gmailUrl = new URL('https://mail.google.com/mail/');
             gmailUrl.searchParams.set('view', 'cm');
@@ -2108,7 +2104,51 @@
             gmailUrl.searchParams.set('su', mailParams.get('subject') || 'New Campaign Enquiry');
             gmailUrl.searchParams.set('body', mailParams.get('body') || '');
 
-            window.open(gmailUrl.toString(), '_blank');
+            return gmailUrl.toString();
+        }
+
+        function openGmailComposer(mailtoLink) {
+            const gmailWebUrl = getGmailWebUrl(mailtoLink);
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            const isIOS = /iPad|iPhone|iPod/i.test(navigator.userAgent) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            if (isAndroid) {
+                // Chrome's Android Intent syntax opens the installed Gmail app.
+                // If Gmail is not installed, Chrome falls back to Gmail on the web.
+                const intentUrl = `intent:${mailtoLink.slice('mailto:'.length)}#Intent;scheme=mailto;package=com.google.android.gm;S.browser_fallback_url=${encodeURIComponent(gmailWebUrl)};end`;
+                window.location.href = intentUrl;
+                return;
+            }
+
+            if (isIOS) {
+                // Gmail for iOS supports the googlegmail compose URL. If the app
+                // is unavailable, fall back to the device's configured mail app.
+                const [recipient, query = ''] = mailtoLink.slice('mailto:'.length).split('?');
+                const mailParams = new URLSearchParams(query);
+                const gmailAppUrl = new URL('googlegmail:///co');
+                gmailAppUrl.searchParams.set('to', recipient);
+                gmailAppUrl.searchParams.set('subject', mailParams.get('subject') || 'New Campaign Enquiry');
+                gmailAppUrl.searchParams.set('body', mailParams.get('body') || '');
+
+                const launchStartedAt = Date.now();
+                window.location.href = gmailAppUrl.toString();
+                window.setTimeout(() => {
+                    if (document.visibilityState === 'visible' && Date.now() - launchStartedAt < 1200) {
+                        window.location.href = mailtoLink;
+                    }
+                }, 800);
+                return;
+            }
+
+            // Keep the existing desktop behavior: open Gmail compose in a new tab.
+            window.open(gmailWebUrl, '_blank', 'noopener');
+        }
+
+        function executeMailto() {
+            if (!generatedMailtoLink) return;
+
+            openGmailComposer(generatedMailtoLink);
         }
 
         // ==========================================================================
@@ -2121,14 +2161,8 @@
         }
 
         function openContactEmail() {
-            const gmailUrl = new URL('https://mail.google.com/mail/');
-            gmailUrl.searchParams.set('view', 'cm');
-            gmailUrl.searchParams.set('fs', '1');
-            gmailUrl.searchParams.set('to', BUSINESS_CONFIG.email);
-            gmailUrl.searchParams.set('su', "Question for The Chef's World");
-            gmailUrl.searchParams.set('body', 'I would like to know about - ....');
-
-            window.open(gmailUrl.toString(), '_blank');
+            const mailtoLink = `mailto:${BUSINESS_CONFIG.email}?subject=${encodeURIComponent("Question for The Chef's World")}&body=${encodeURIComponent('I would like to know about - ....')}`;
+            openGmailComposer(mailtoLink);
         }
 
         // ==========================================================================
