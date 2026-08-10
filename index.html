@@ -737,14 +737,40 @@
         }
 
         .split-img {
-            background: var(--bg-secondary);
             position: relative;
+            isolation: isolate;
             overflow: hidden;
-            /* Placeholder styling */
-            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            background: #050505;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .split-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-image: var(--split-artwork);
+            background-repeat: no-repeat;
+            background-position: center;
+            /* Keep the full artwork visible, including both chefs' hats. */
+            background-size: contain;
+            filter: drop-shadow(0 0 24px rgba(207, 166, 105, 0.12));
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .split-img:hover::before {
+            transform: scale(1.025);
+            filter: drop-shadow(0 0 34px rgba(207, 166, 105, 0.2));
+        }
+
+        .split-img.chef-flame-art {
+            --split-artwork: url('assets/chef-flame-illustration.webp');
+        }
+
+        .split-img.chef-prep-art {
+            --split-artwork: url('assets/chef-prep-illustration.webp');
         }
         
         .split-img::after {
@@ -752,6 +778,8 @@
             position: absolute;
             width: 100%; height: 100%;
             background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* ==========================================================================
@@ -1358,9 +1386,7 @@
          TARGET SECTIONS (CHEFS & RESTAURANTS)
          ========================================================================== -->
     <section class="split-section">
-        <div class="split-img scroll-reveal">
-            <!-- Background handled in CSS, acts as placeholder for high-end food/chef imagery -->
-        </div>
+        <div class="split-img chef-flame-art scroll-reveal" role="img" aria-label="Illustration of a chef cooking over a dramatic flame"></div>
         <div class="split-content scroll-reveal" style="background: var(--bg-secondary);">
             <span class="subheading" style="color: var(--gold-primary); letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem; display: block; font-family: var(--font-heading);">FOR CHEFS</span>
             <h2>CHEFS DESERVE TO BE DISCOVERED.</h2>
@@ -1390,9 +1416,7 @@
                 <button class="btn btn-outline-light" onclick="openModal('custom')">PROMOTE MY RESTAURANT</button>
             </div>
         </div>
-        <div class="split-img scroll-reveal" style="background: radial-gradient(circle at center, #111 0%, #000 100%);">
-            <!-- Image placeholder -->
-        </div>
+        <div class="split-img chef-prep-art scroll-reveal" role="img" aria-label="Illustration of a chef preparing vegetables"></div>
     </section>
 
     <!-- ==========================================================================
